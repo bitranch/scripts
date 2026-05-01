@@ -1,5 +1,5 @@
 import * as childProcess from 'child_process';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export interface ProcessOutput {
 	pipe: 'stdout' | 'stderr';
@@ -11,21 +11,21 @@ export async function runAsPromise(command: string, args: string[], options: any
 		let stderr = '';
 		let stdout = '';
 
-		runAsObservable(command, args, options).subscribe(
-			(chunk) => {
+		runAsObservable(command, args, options).subscribe({
+			next: (chunk) => {
 				if (chunk.pipe === 'stdout') {
 					stdout += chunk.chunk;
 				} else if (chunk.pipe === 'stderr') {
 					stderr += chunk.chunk;
 				}
 			},
-			() => {
+			error: () => {
 				reject(stderr);
 			},
-			() => {
+			complete: () => {
 				resolve(stdout);
 			}
-		);
+		});
 	});
 }
 
@@ -54,7 +54,7 @@ export function runAsObservable(command: string, args: string[], options: any = 
 		});
 
 		process.once('close', (code) => {
-			if (code <= 0) {
+			if (code !== null && code <= 0) {
 				subscriber.complete();
 			} else {
 				subscriber.error();

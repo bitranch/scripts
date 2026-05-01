@@ -17,7 +17,7 @@
 	],
 
 	"browser": {
-		"loader": "./node_modules/@dojo/scripts/intern/loader.js",
+		"loader": "./node_modules/@dojo-ng/scripts/intern/loader.js",
 		"reporters": [
 			{
 				"name": "html"
@@ -30,7 +30,7 @@
 
 	"node": {
 		"plugins+": [
-			{ "script": "@dojo/scripts/intern/reporter.js", "useLoader": true }
+			{ "script": "@dojo-ng/scripts/intern/reporter.js", "useLoader": true }
 		],
 		"reporters": [
 			{

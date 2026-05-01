@@ -37,9 +37,9 @@ export function copy(sourceFile: string, destFile: string, flat: boolean, transf
 		fs.mkdirSync(dir);
 	});
 
-	let content: string | Buffer = fs.readFileSync(sourceFile);
+	let content: string = fs.readFileSync(sourceFile, 'utf8');
 	if (transform) {
-		content = transform(content.toString(), flat);
+		content = transform(content, flat);
 	}
 
 	fs.writeFileSync(destFile, content);

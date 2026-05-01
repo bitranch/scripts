@@ -23,7 +23,7 @@ In your local project, you would extend one of these configs. For example to use
 
 ```json
 {
-  "extends": "./node_modules/@dojo/scripts/tsconfig/umd.json"
+  "extends": "./node_modules/@dojo-ng/scripts/tsconfig/umd.json"
 }
 ```
 
@@ -31,7 +31,7 @@ To further enable ESM modules, create a `tsconfig.esm.json` with the following:
 
 ```json
 {
-  "extends": "./node_modules/@dojo/scripts/tsconfig/esm.json"
+  "extends": "./node_modules/@dojo-ng/scripts/tsconfig/esm.json"
 }
 ```
 
@@ -75,7 +75,7 @@ This package also includes a base set of tslint rules you can use. Update your `
 
 ```json
 {
-  "extends": "./node_modules/@dojo/scripts/tslint/base.json"
+  "extends": "./node_modules/@dojo-ng/scripts/tslint/base.json"
 }
 ```
 
@@ -97,9 +97,9 @@ Projects can extend the provided Intern configs and avoid boilerplate configurat
 
 ```json
 {
-  "extends": "./node_modules/@dojo/scripts/intern/base.json",
+  "extends": "./node_modules/@dojo-ng/scripts/intern/base.json",
   "capibilities": {
-    "name": "@dojo/your-project"
+    "name": "@dojo-ng/your-project"
   }
 }
 ```
@@ -162,7 +162,7 @@ For example,
     "test:saucelabs": "intern config=intern.json@saucelabs",
     "build:static": "copyfiles \"tests/**/*.html\" \"src/**/*.d.ts\"",
     "build:umd": "tsc -p . && npm run build:static -- dist/umd",
-    "build:esm": "tsc -p ./node_modules/@dojo/scripts/tsconfig.esm.json && npm run build:static -- dist/esm",
+    "build:esm": "tsc -p ./node_modules/@dojo-ng/scripts/tsconfig.esm.json && npm run build:static -- dist/esm",
     "clean": "rimraf dist",
     "dist": "npm run lint && npm run clean && npm run build:umd && npm run build:esm && npm run package",
     "package": "dojo-package",

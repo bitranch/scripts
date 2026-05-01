@@ -13,14 +13,10 @@
 			"es2015.symbol",
 			"es2015.symbol.wellknown"
 		],
-		"moduleResolution": "node",
+		"ignoreDeprecations": "6.0",
+		"moduleResolution": "node10",
 		"noUnusedLocals": true,
-		"plugins": [
-			{
-				"name": "tslint-language-service",
-				"alwaysShowRuleFailuresAsWarnings": true
-			}
-		],
+		"skipLibCheck": true,
 		"removeComments": false,
 		"sourceMap": true,
 		"strict": true,

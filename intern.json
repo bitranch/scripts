@@ -1,7 +1,7 @@
 {
 	"extends": "./src/intern/base.json",
 	"capabilities+": {
-		"name": "@dojo/scripts"
+		"name": "@dojo-ng/scripts"
 	},
 	"node": {
 		"plugins": [

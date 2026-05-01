@@ -34,7 +34,7 @@ describe('intern/loader', () => {
 	}
 
 	function runTest(before: Function, after: Function) {
-		return new Promise((resolve, reject) => {
+		return new Promise<void>((resolve, reject) => {
 			before();
 			vm.runInContext(instrumentedCode, context);
 
@@ -100,8 +100,8 @@ describe('intern/loader', () => {
 		runTest(
 			() => {},
 			() => {
-				assert.isTrue(internMock.loadScript.calledWith('node_modules/@dojo/loader/loader.js'));
-				assert.isTrue(internMock.loadScript.calledWith('node_modules/@dojo/framework/shim/util/amd.js'));
+				assert.isTrue(internMock.loadScript.calledWith('node_modules/@dojo-ng/loader/loader.js'));
+				assert.isTrue(internMock.loadScript.calledWith('node_modules/@dojo-ng/framework/shim/util/amd.js'));
 			}
 		));
 
@@ -127,12 +127,12 @@ describe('intern/loader', () => {
 		runTest(
 			() => {},
 			() => {
-				assert.equal(requireMock.args[0][0], '@dojo/framework/shim/main');
+				assert.equal(requireMock.args[0][0], '@dojo-ng/framework/shim/main');
 			}
 		));
 
 	it('creates a loader that uses require', async () =>
-		new Promise((resolve) => {
+		new Promise<void>((resolve) => {
 			runTest(
 				() => {},
 				(result: any) => {

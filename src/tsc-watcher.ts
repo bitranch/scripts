@@ -1,8 +1,6 @@
 import chalk from 'chalk';
 
-import 'rxjs/add/observable/zip';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject, zip } from 'rxjs';
 import { runAsObservable, runAsPromise } from './utils/process';
 
 interface CompilationCompletionEvent {
@@ -70,8 +68,8 @@ for (const projectDir of projectDirs) {
 	const compilationObserver = new Subject<CompilationCompletionEvent>();
 	compilationCompleted.push(compilationObserver);
 
-	runAsObservable('./node_modules/.bin/tsc', tscArgs, options).subscribe(
-		(chunk) => {
+	runAsObservable('./node_modules/.bin/tsc', tscArgs, options).subscribe({
+		next: (chunk) => {
 			if (chunk.pipe === 'stdout') {
 				buffer += chunk.chunk;
 			}
@@ -91,20 +89,20 @@ for (const projectDir of projectDirs) {
 				buffer = buffer.slice(index + marker.length);
 			}
 		},
-		() => {
+		error: () => {
 			console.error(`tsc ${tscArgs.join(' ')} process exited`);
 		},
-		() => {
+		complete: () => {
 			console.log(`tsc ${tscArgs.join(' ')} process exited gracefully`);
 		}
-	);
+	});
 }
 
 Promise.all(firstCompiles).then(() => {
 	console.log(chalk.yellow('Initial compilation finished. Watching for changes...'));
 });
 
-Observable.zip(...compilationCompleted).subscribe((values) => {
+zip(...compilationCompleted).subscribe((values) => {
 	let didError = false;
 
 	values.forEach((event) => {
