@@ -12,15 +12,12 @@
 		"@typescript-eslint"
 	],
 	"rules": {
-		"@typescript-eslint/class-name-casing": "error",
 		"@typescript-eslint/explicit-member-accessibility": [
 			"off",
 			{
 				"accessibility": "explicit"
 			}
 		],
-		"@typescript-eslint/indent": "off",
-		"@typescript-eslint/interface-name-prefix": "error",
 		"@typescript-eslint/member-ordering": "off",
 		"@typescript-eslint/no-empty-function": "off",
 		"@typescript-eslint/no-explicit-any": "off",

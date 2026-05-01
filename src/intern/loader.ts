@@ -15,8 +15,8 @@ intern.registerLoader((options: any) => {
 		packages = [],
 		map = {},
 		baseUrl = intern.config.basePath,
-		loaderPath = 'node_modules/@dojo/loader/loader.js',
-		shimPath = 'node_modules/@dojo/framework/shim/util/amd.js'
+		loaderPath = 'node_modules/@dojo-ng/loader/loader.js',
+		shimPath = 'node_modules/@dojo-ng/framework/shim/util/amd.js'
 	} = options;
 
 	return intern
@@ -70,9 +70,9 @@ intern.registerLoader((options: any) => {
 			);
 		})
 		.then(() => {
-			// load @dojo/framework/shim/main to import the ts helpers
+			// load @dojo-ng/framework/shim/main to import the ts helpers
 			return new Promise<void>((resolve) => {
-				(require as any)(['@dojo/framework/shim/main'], () => {
+				(require as any)(['@dojo-ng/framework/shim/main'], () => {
 					resolve();
 				});
 			});

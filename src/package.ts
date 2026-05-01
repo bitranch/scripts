@@ -72,7 +72,7 @@ destDirectories.forEach(({ dest: destDir, flat, packageJson }) => {
 
 		// copy README.md
 		if (fs.existsSync('README.md')) {
-			const readmeContent = fs.readFileSync('README.md');
+			const readmeContent = fs.readFileSync('README.md', 'utf8');
 			fs.writeFileSync(path.join(destDirFullPath, 'README.md'), readmeContent);
 		}
 	}
